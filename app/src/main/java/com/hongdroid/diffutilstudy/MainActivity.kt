@@ -63,10 +63,12 @@ class MainActivity : AppCompatActivity(), CommonListener {
         Toast.makeText(this, "선택된 아이템이 제거 되었습니다.",Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     * 선택된 아이템을 수정한다.
+     */
     private fun modifyItem(clickPosition: Int, name: String, age: Int, hobby: String) {
         val newList = ArrayList<UserModel>().apply {
             addAll(arrayList)
-//            set(clickPosition, UserModel(etName.text.toString(), Integer.parseInt(etAge.text.toString()), etHobby.text.toString()))
             set(clickPosition, UserModel(name, age, hobby))
         }
         adapter.changeList(newList)
@@ -74,6 +76,9 @@ class MainActivity : AppCompatActivity(), CommonListener {
         Toast.makeText(this, "선택된 아이템이 수정 되었습니다.",Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     * (수정, 삭제) 중 선택하는 Optional Dialog
+     */
     private fun setChooseOptionDialog(clickPosition: Int) {
         val view = layoutInflater.inflate(R.layout.dialog_choose, null)
         val btnModify = view.findViewById<Button>(R.id.btn_modify)
