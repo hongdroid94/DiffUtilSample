@@ -115,8 +115,14 @@ class MainActivity : AppCompatActivity(), CommonListener {
         val etHobby = view.findViewById<EditText>(R.id.et_hobby)
 
         AlertDialog.Builder(this)
-            .setTitle("원하는 옵션을 선택해주세요")
+            .setTitle("수정할 내용을 작성하세요")
             .setPositiveButton("수정완료", DialogInterface.OnClickListener { dialogInterface, i ->
+                if (etName.text.isEmpty() || etAge.text.isEmpty() || etHobby.text.isEmpty()) {
+                    Toast.makeText(this, "빈 입력 값을 채워주세요!",Toast.LENGTH_SHORT).show()
+                    return@OnClickListener
+                }
+
+
                 modifyItem(clickPosition, etName.text.toString(), Integer.parseInt(etAge.text.toString()), etHobby.text.toString())
             })
             .setView(view)
